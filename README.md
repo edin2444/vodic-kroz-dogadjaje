@@ -1,1 +1,23 @@
 # Bakson: Vodič Kroz događaje
+Projekat, ukratko, nudi mogućnost praćenja događaja, koncerata, predavanja i radionica koja se dešavaju u Beogradu...
+
+# Instrukcije za pokretanje
+Nakon preuzimanja i raspakivanja projekta, dovoljno je otvoriti index.html fajl u pregledaču...
+
+# Korišćene tehnologije
+Korišćene tehnologije(u dosadašnjem radu) su HTML, CSS i Bootstrap...
+
+# Implementirane funkcionalnosti
+Za sada je implementiran samo vizuelni prikaz događaja, funkcionalnost filtera će kasnije biti implementirana...
+
+# Približno utrošeno vreme
+4 sata efektivnog rada...
+
+# Najveća poteškoća
+/
+
+# Poznati problemi i nezavršene stavke
+Za sada je ostala samo funkcionalnost filter dugmeta na strani da se implementira...
+
+# Korišćenje AI alata
+Koristio sam AI alat za otklanjanje grešaka prilikom implementacije navigacionog menija (pogrešna verzija Bootstap-a je bila u pitanju) i kao ispiraciju za sadržaj stranice (u smislu događaja i njihovih opisa)...
