@@ -1,3 +1,82 @@
 #strana{
     background-color: white;
 }
+.center{
+    text-align: center;
+}
+.center{
+    text-align: center;
+    opacity: 0;
+    transform: translateY(-10px);
+}
+.buttonCenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(-10px);
+}
+.anim1{
+    animation-name: anim1;
+    animation-duration: 2s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+@keyframes anim1{
+    from{
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+.AnimCard1{
+    animation-name: animCard1;
+    animation-duration: 2s;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    opacity:0;
+    transform: translateX(-10px);
+}
+.AnimCard2{
+    animation-name: anim1;
+    animation-duration: 2s;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    opacity:0;
+    transform: translateY(-10px);
+}
+.AnimCard3{
+    animation-name: animCard3;
+    animation-duration: 2s;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    opacity:0;
+    transform: translateX(10px);
+}
+@keyframes animCard1{
+    from{
+        transform: translateX(-10px);
+        opacity: 0;
+    }
+    to{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+@keyframes animCard3{
+    from{
+        transform: translateX(10px);
+        opacity: 0;
+    }
+    to{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
