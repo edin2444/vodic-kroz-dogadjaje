@@ -38,10 +38,29 @@
 <div class="row">
   <div class="col-sm-12">
     <h2 class="center anim1">Naši događaji</h2>
-    <button type="button" class="btn btn-warning buttonCenter anim1">Filter</button>
   </div>
-  <div class="row" style="margin-left: 10px; margin-right: 10px;">
-    <div class="col-sm-12 col-md-4">
+  <div class="accordion anim1" id="btn1">
+    <div class="accordion-item" style="margin-left: 30px; margin-right: 30px;">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button btn btn-warning d-block text-center" type="button" data-bs-toggle="collapse" data-bs-target="#filter" aria-expanded="false" aria-controls="filter">
+          Filter
+        </button>
+      </h2>
+      <div id="filter" class="accordion-collapse collapse" data-bs-parent="#btn1">
+        <div class="accordion-body checks">
+          <label><input type="radio" id="svi" name="filter" value="svi" style="cursor: pointer;" onchange="Filter()">&nbsp;Svi događaji</label><br>
+          <label><input type="radio" id="koncert" name="filter" value="koncert" style="cursor: pointer;" onchange="Filter()">&nbsp;Koncerti</label><br>
+          <label><input type="radio" id="predavanje" name="filter" value="predavanje" style="cursor: pointer;" onchange="Filter()">&nbsp;Predavanja</label><br>
+          <label><input type="radio" id="radionica" name="filter" value="radionica" style="cursor: pointer;" onchange="Filter()">&nbsp;Radionice</label><br>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <h5 class="center anim1 filtertext">Izabrani filter će ovde biti prikazan</h5>
+  </div>
+  <div class="row g-4" style="margin-left: 10px; margin-right: 10px;">
+    <div class="col-sm-12 col-lg-4 Konc">
       <div class="container AnimCard1" style="text-align: center;">
         <div class="card" style="width: 20em; text-align: center; margin:auto;">
           <img src="img/Vlado_Arena.jpeg">
@@ -52,13 +71,13 @@
             <p class="card-text">Lokacija: Beogradska Arena, Bulevar Arsenija Čarnojevića 58, Beograd</p>
             <p class="card-text">Kategorija: Koncert</p>
             <p class="card-text">Opis: Koncert koji zasigurno ne želite da propustite! Gospodski u Areni sa pogledom na binu od 360&deg; pruža nezaboravno iskustvo slušanja
-              najvećih hitova Vlade Georigijeva!
+              najvećih hitova Vlade Georgijeva!
             </p>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-sm-12 col-md-4">
+    <div class="col-sm-12 col-lg-4 Pred">
       <div class="container AnimCard2" style="text-align: center;">
         <div class="card" style="width: 20em; text-align: center; margin:auto;">
           <img src="img/Sofiologija.jpeg" style="height: 20em;">
@@ -73,8 +92,8 @@
         </div>
       </div>
     </div>
-    
-    <div class="col-sm-12 col-md-4">
+
+    <div class="col-sm-12 col-lg-4 Rad">
       <div class="container" style="text-align: center;">
         <div class="card AnimCard3" style="width: 20em; text-align: center; margin:auto;">
           <img src="img/Meetup(edited).jpeg" style="height: 20em;">
@@ -85,15 +104,13 @@
             <p class="card-text">Lokacija: Haos Community Space, Kraljice Natalije 11, Beograd</p>
             <p class="card-text">Kategorija: Radionica</p>
             <p class="card-text">Opis: Program pokriva praktične teme iz oblasti AI agenata, kreiranja sadržaja, razvoja karijere i izgradnje zajednice u IT industriji.
-              Događaj je na engleskom jeziku
+              Predavanje je na engleskom jeziku.
             </p>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="row" style="margin-left: 10px; margin-right: 10px;">
-    <div class="col-sm-12 col-md-4">
+    <div class="col-sm-12 col-lg-4 Pred">
       <div class="container" style="text-align: center;">
         <div class="card AnimCard1" style="width: 20em; text-align: center; margin:auto;">
           <img src="img/Hleb(edited).png" style="height: 20em;">
@@ -104,12 +121,12 @@
             <p class="card-text">Lokacija: Dom Jevrema Grujića, Svetogorska 17, Beograd</p>
             <p class="card-text">Kategorija: Predavanje</p>
             <p class="card-text">Opis: Program istražuje simboliku, oblike i svakodnevnu ulogu hleba u srednjovekovnoj Srbiji kroz prikaze na freskama
-               (poput kompozicije Tajne večere)</p>
+               (poput kompozicije Tajne večere).</p>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-sm-12 col-md-4">
+    <div class="col-sm-12 col-lg-4 Konc">
       <div class="container" style="text-align: center;">
         <div class="card AnimCard2" style="width: 20em; text-align: center; margin:auto;">
           <img src="img/magla(edited).jpeg">
@@ -119,14 +136,14 @@
             <p class="card-text">Datum: 10.12.2026</p>
             <p class="card-text">Lokacija: Sava Centar, Milentija Popovića 9, Beograd</p>
             <p class="card-text">Kategorija: Koncert</p>
-            <p class="card-text">Opis: Poslednji koncert koji Magla Bend održava ove dogine. Najveći hitovi i nove pesme, kao i poznati gosti, pretvaraju koncert u 
-              veče za pamćenje.
+            <p class="card-text">Opis: Poslednji koncert koji Magla Bend održava ove godine. Najveći hitovi, nove pesme i poznati gosti, pretvaraju koncert u 
+              veče za pamćenje!
             </p>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-sm-12 col-md-4">
+    <div class="col-sm-12 col-lg-4 Rad">
       <div class="container" style="text-align: center;">
         <div class="card AnimCard3" style="width: 20em; text-align: center; margin:auto;">
           <img src="img/Toskana.png">
