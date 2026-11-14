@@ -74,6 +74,14 @@ body{
         transform: translateY(-10px);
     }
 }
+@media screen and (max-width: 320px) {
+    body{
+        overflow-x: hidden;
+    }
+    .row{
+        margin:auto !important;
+    }
+}
 .AnimCard1{
     animation-name: animCard1;
     animation-duration: 2s;

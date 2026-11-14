@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" lang="sr" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="bootstrap_5.3.8/css/bootstrap.min.css">
     <title>Početna Strana</title>
 </head>
-<body id="strana">
+<body id="strana" onload="PrikaziDogađaje()">
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#"><img src="img/bakson_ltd_logo.jpeg" alt="Logo Firme" width="50" height="50"></a>
@@ -48,10 +48,11 @@
       </h2>
       <div id="filter" class="accordion-collapse collapse" data-bs-parent="#btn1">
         <div class="accordion-body checks">
-          <label><input type="radio" id="svi" name="filter" value="svi" style="cursor: pointer;" onchange="Filter()">&nbsp;Svi događaji</label><br>
+          <label><input type="radio" id="svi" name="filter" value="svi" style="cursor: pointer;" onchange="Filter()" checked>&nbsp;Svi događaji</label><br>
           <label><input type="radio" id="koncert" name="filter" value="koncert" style="cursor: pointer;" onchange="Filter()">&nbsp;Koncerti</label><br>
           <label><input type="radio" id="predavanje" name="filter" value="predavanje" style="cursor: pointer;" onchange="Filter()">&nbsp;Predavanja</label><br>
           <label><input type="radio" id="radionica" name="filter" value="radionica" style="cursor: pointer;" onchange="Filter()">&nbsp;Radionice</label><br>
+          <label for="tekst">Pretraga po nazivu</label><input type="text" id="tekst" placeholder="Unesite naziv događaja ili deo naziva..." style="margin-top: 10px;" oninput="FilterTeksta()">
         </div>
       </div>
     </div>
@@ -59,108 +60,27 @@
   <div class="col-sm-12">
     <h5 class="center anim1 filtertext">Izabrani filter će ovde biti prikazan</h5>
   </div>
-  <div class="row g-4" style="margin-left: 10px; margin-right: 10px;">
-    <div class="col-sm-12 col-lg-4 Konc">
-      <div class="container AnimCard1" style="text-align: center;">
-        <div class="card" style="width: 20em; text-align: center; margin:auto;">
-          <img src="img/Vlado_Arena.jpeg">
-          <div class="card-body">
-            <div class="card-title">Događaj 1</div>
-            <h5 class="card-title">Koncert Vlado Georgijev</h5>
-            <p class="card-text">Datum: 6.12.2026</p>
-            <p class="card-text">Lokacija: Beogradska Arena, Bulevar Arsenija Čarnojevića 58, Beograd</p>
-            <p class="card-text">Kategorija: Koncert</p>
-            <p class="card-text">Opis: Koncert koji zasigurno ne želite da propustite! Gospodski u Areni sa pogledom na binu od 360&deg; pruža nezaboravno iskustvo slušanja
-              najvećih hitova Vlade Georgijeva!
-            </p>
-          </div>
-        </div>
-      </div>
+  <div class="row g-4"style="margin-left: 10px; margin-right: 10px;" id="događaji">
+    <div class="col-sm-12 col-lg-4 Konc" id="1">
+      <!-- Ovde ide struktura kartice -->
     </div>
-    <div class="col-sm-12 col-lg-4 Pred">
-      <div class="container AnimCard2" style="text-align: center;">
-        <div class="card" style="width: 20em; text-align: center; margin:auto;">
-          <img src="img/Sofiologija.jpeg" style="height: 20em;">
-          <div class="card-body">
-            <div class="card-title">Događaj 2</div>
-            <h5 class="card-title">Sofiologija u ruskoj religijskoj misli</h5>
-            <p class="card-text">Datum: 18.11.2026</p>
-            <p class="card-text">Lokacija: Dom Omladine, Makedonska 22, Beograd</p>
-            <p class="card-text">Kategorija: Predavanje</p>
-            <p class="card-text">Opis: Predavanje vodi prof. dr Davor Džalto. Fokus razgovora biće na pojmu Božanske Premudrosti (Sofije) kod ruskih mislilaca.</p>
-          </div>
-        </div>
-      </div>
+    <div class="col-sm-12 col-lg-4 Pred" id="2">
+      <!-- Ovde ide struktura kartice -->
     </div>
-
-    <div class="col-sm-12 col-lg-4 Rad">
-      <div class="container" style="text-align: center;">
-        <div class="card AnimCard3" style="width: 20em; text-align: center; margin:auto;">
-          <img src="img/Meetup(edited).jpeg" style="height: 20em;">
-          <div class="card-body">
-            <div class="card-title">Događaj 3</div>
-            <h5 class="card-title">IT Connect X SemRush Meetup</h5>
-            <p class="card-text">Datum: 19.11.2026</p>
-            <p class="card-text">Lokacija: Haos Community Space, Kraljice Natalije 11, Beograd</p>
-            <p class="card-text">Kategorija: Radionica</p>
-            <p class="card-text">Opis: Program pokriva praktične teme iz oblasti AI agenata, kreiranja sadržaja, razvoja karijere i izgradnje zajednice u IT industriji.
-              Predavanje je na engleskom jeziku.
-            </p>
-          </div>
-        </div>
-      </div>
+    <div class="col-sm-12 col-lg-4 Rad" id="3">
+      <!-- Ovde ide struktura kartice -->
     </div>
-    <div class="col-sm-12 col-lg-4 Pred">
-      <div class="container" style="text-align: center;">
-        <div class="card AnimCard1" style="width: 20em; text-align: center; margin:auto;">
-          <img src="img/Hleb(edited).png" style="height: 20em;">
-          <div class="card-body">
-            <div class="card-title">Događaj 4</div>
-            <h5 class="card-title">Hleb sa srpskim srednjovekovnim freskama</h5>
-            <p class="card-text">Datum: 20.11.2026</p>
-            <p class="card-text">Lokacija: Dom Jevrema Grujića, Svetogorska 17, Beograd</p>
-            <p class="card-text">Kategorija: Predavanje</p>
-            <p class="card-text">Opis: Program istražuje simboliku, oblike i svakodnevnu ulogu hleba u srednjovekovnoj Srbiji kroz prikaze na freskama
-               (poput kompozicije Tajne večere).</p>
-          </div>
-        </div>
-      </div>
+    <div class="col-sm-12 col-lg-4 Pred" id="4">
+      <!-- Ovde ide struktura kartice -->
     </div>
-    <div class="col-sm-12 col-lg-4 Konc">
-      <div class="container" style="text-align: center;">
-        <div class="card AnimCard2" style="width: 20em; text-align: center; margin:auto;">
-          <img src="img/magla(edited).jpeg">
-          <div class="card-body">
-            <div class="card-title">Događaj 5</div>
-            <h5 class="card-title">Koncert Magla Bend</h5>
-            <p class="card-text">Datum: 10.12.2026</p>
-            <p class="card-text">Lokacija: Sava Centar, Milentija Popovića 9, Beograd</p>
-            <p class="card-text">Kategorija: Koncert</p>
-            <p class="card-text">Opis: Poslednji koncert koji Magla Bend održava ove godine. Najveći hitovi, nove pesme i poznati gosti, pretvaraju koncert u 
-              veče za pamćenje!
-            </p>
-          </div>
-        </div>
-      </div>
+    <div class="col-sm-12 col-lg-4 Konc" id="5">
+      <!-- Ovde ide struktura kartice -->
     </div>
-    <div class="col-sm-12 col-lg-4 Rad">
-      <div class="container" style="text-align: center;">
-        <div class="card AnimCard3" style="width: 20em; text-align: center; margin:auto;">
-          <img src="img/Toskana.png">
-          <div class="card-body">
-            <div class="card-title">Događaj 6</div>
-            <h5 class="card-title">Radionica Slikanja:Toskana</h5>
-            <p class="card-text">Datum: 14.11.2026</p>
-            <p class="card-text">Lokacija: Braće Ribnikar 29, Beograd</p>
-            <p class="card-text">Kategorija: Radionica</p>
-            <p class="card-text">Opis: Radionica slikanja namenjena odraslima i početnicima bez prethodnog slikarskog iskustva. Uključeno neograničeno piće, 
-              stručno vođenje radionice i sav neophodan materijal.</p>
-          </div>
-        </div>
-      </div>
+    <div class="col-sm-12 col-lg-4 Rad" id="6">
+      <!-- Ovde ide struktura kartice -->
     </div>
   </div>
 </body>
-<script src="js/script.js"></script>
+<script defer src="js/script.js"></script>
 <script src="bootstrap_5.3.8/js/bootstrap.min.js"></script>
 </html>
