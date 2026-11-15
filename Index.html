@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" lang="sr" content="width=device-width, initial-scale=1.0">
@@ -48,10 +48,10 @@
       </h2>
       <div id="filter" class="accordion-collapse collapse" data-bs-parent="#btn1">
         <div class="accordion-body checks">
-          <label><input type="radio" id="svi" name="filter" value="svi" style="cursor: pointer;" onchange="Filter()" checked>&nbsp;Svi događaji</label><br>
-          <label><input type="radio" id="koncert" name="filter" value="koncert" style="cursor: pointer;" onchange="Filter()">&nbsp;Koncerti</label><br>
-          <label><input type="radio" id="predavanje" name="filter" value="predavanje" style="cursor: pointer;" onchange="Filter()">&nbsp;Predavanja</label><br>
-          <label><input type="radio" id="radionica" name="filter" value="radionica" style="cursor: pointer;" onchange="Filter()">&nbsp;Radionice</label><br>
+          <label style="cursor: pointer;"><input type="radio" id="svi" name="filter" value="svi" style="cursor: pointer;" onchange="Filter()" checked>&nbsp;Svi događaji</label><br>
+          <label style="cursor: pointer;"><input type="radio" id="koncert" name="filter" value="koncert" style="cursor: pointer;" onchange="Filter()">&nbsp;Koncerti</label><br>
+          <label style="cursor: pointer;"><input type="radio" id="predavanje" name="filter" value="predavanje" style="cursor: pointer;" onchange="Filter()">&nbsp;Predavanja</label><br>
+          <label style="cursor: pointer;"><input type="radio" id="radionica" name="filter" value="radionica" style="cursor: pointer;" onchange="Filter()">&nbsp;Radionice</label><br>
           <label for="tekst">Pretraga po nazivu</label><input type="text" id="tekst" placeholder="Unesite naziv događaja ili deo naziva..." style="margin-top: 10px;" oninput="FilterTeksta()">
         </div>
       </div>
@@ -61,24 +61,8 @@
     <h5 class="center anim1 filtertext">Izabrani filter će ovde biti prikazan</h5>
   </div>
   <div class="row g-4"style="margin-left: 10px; margin-right: 10px;" id="događaji">
-    <div class="col-sm-12 col-lg-4 Konc" id="1">
-      <!-- Ovde ide struktura kartice -->
-    </div>
-    <div class="col-sm-12 col-lg-4 Pred" id="2">
-      <!-- Ovde ide struktura kartice -->
-    </div>
-    <div class="col-sm-12 col-lg-4 Rad" id="3">
-      <!-- Ovde ide struktura kartice -->
-    </div>
-    <div class="col-sm-12 col-lg-4 Pred" id="4">
-      <!-- Ovde ide struktura kartice -->
-    </div>
-    <div class="col-sm-12 col-lg-4 Konc" id="5">
-      <!-- Ovde ide struktura kartice -->
-    </div>
-    <div class="col-sm-12 col-lg-4 Rad" id="6">
-      <!-- Ovde ide struktura kartice -->
-    </div>
+    <h5 id="nema" style="display: none; text-align: center;">Broj događaja ide ovde...</h5>
+    <!-- Ovde idu kartice -->
   </div>
 </body>
 <script defer src="js/script.js"></script>

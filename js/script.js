@@ -1,11 +1,11 @@
 let animacije = false;
 let nizObjekata = [];
 nizObjekata[0] = {ID:1, Naziv:"Koncert Vlado Georgijev", Datum:"6.12.2026", Mesto:"Beogradska Arena, Bulevar Arsenija Čarnojevića 58, Beograd",
-    Kategorija: "Koncert", Opis: "Koncert koji zasigurno ne želite da propustite! Gospodski u Areni sa pogledom na binu od 360° pruža nezaboravno iskustvo slušanja najvećih hitova Vlade Georgijeva! Koncert koji zasigurno ne želite da propustite! Gospodski u Areni sa pogledom na binu od 360° pruža nezaboravno iskustvo slušanja najvećih hitova Vlade Georgijeva!",
+    Kategorija: "Koncert", Opis: "Koncert koji zasigurno ne želite da propustite! Gospodski u Areni sa pogledom na binu od 360° pruža nezaboravno iskustvo slušanja najvećih hitova Vlade Georgijeva!",
     Putanja:"img/Vlado_Arena.jpeg"
 };
 nizObjekata[1] = {ID:2, Naziv:"Sofiologija u ruskoj religijskoj misli", Datum:"18.11.2026", Mesto:"Dom Omladine, Makedonska 22, Beograd",
-    Kategorija: "Predavanje", Opis: "Predavanje vodi prof. dr Davor Džalto sa Univerzitetskog koledža u Stokholmu, u okviru ciklusa „Na krilima (pre)mudrosti – Sofije“. Fokus razgovora biće na pojmu Božanske Premudrosti (Sofije) kod ruskih mislilaca poput Vladimira Solovjova i Sergeja Bulgakova, kao i na njenoj ulozi u savremenoj teologiji i filozofiji.",
+    Kategorija: "Predavanje", Opis: "Predavanje vodi prof. dr Davor Džalto sa Univerzitetskog koledža u Stokholmu, u okviru ciklusa „Na krilima (pre)mudrosti – Sofije“.",
     Putanja:"img/Sofiologija(edited).jpeg"
 };
 nizObjekata[2] = {ID:3, Naziv:"IT Connect X SemRush Meetup", Datum:"19.11.2026", Mesto:"Haos Community Space, Kraljice Natalije 11, Beograd",
@@ -47,9 +47,10 @@ function PrikaziDogađaje(){
             html+="<div class='col-sm-12 col-lg-4 "+kategorijaKlasa+"' id="+(i+1)+"><div class='container AnimCard2' style='text-align: center;'> <div class='card' style='width: 18em; margin: auto;'><img src='"+nizObjekata[i].Putanja+"' alt='"+nizObjekata[i].Naziv+"(slika)'> <div class='card-body'><div class='card-title'>Događaj " + (i+1) + "</div> <h5 class='card-title'>" + dogadjaj.Naziv + "</h5> <p class='card-text'>Datum: " + dogadjaj.Datum + "</p> <p class='card-text'>Lokacija: " + dogadjaj.Mesto + "</p> <p class='card-text'>Kategorija: " + dogadjaj.Kategorija + "</p> <p class='card-text'>Opis: " + dogadjaj.Opis + "</p></div></div></div></div>";
         }
     }
-    document.getElementById("događaji").innerHTML = html;
+    document.getElementById("događaji").innerHTML ='<h5 id="nema" style="display: none; text-align: center;">Nema pronađenih događaja.</h5>' + html;
 }
-function Filter(){
+function UkloniAnimacije()
+{
     if(!animacije)
     {
         document.querySelectorAll(".Konc, .Pred, .Rad").forEach(card => {
@@ -59,6 +60,9 @@ function Filter(){
     });
     animacije = true;
     }
+}
+function Filter(){
+    UkloniAnimacije();
     let filter = document.querySelector('input[name="filter"]:checked').value;
     let filterText = document.querySelector(".filtertext");
     switch(filter) {
@@ -76,21 +80,33 @@ function Filter(){
             break;
     }
     filterText.style.color="black";
-    let koncerti = document.querySelectorAll(".Konc");
-    let predavanja = document.querySelectorAll(".Pred");
-    let radionice = document.querySelectorAll(".Rad");
-    koncerti.forEach(card => {
-        card.style.display = (filter == "svi" || filter == "koncert") ? "block" : "none";
-    });
-
-    predavanja.forEach(card => {
-        card.style.display = (filter == "svi" || filter == "predavanje") ? "block" : "none";
-    });
-
-    radionice.forEach(card => {
-        card.style.display = (filter == "svi" || filter == "radionica") ? "block" : "none";
-    });
+    FilterTeksta();
 }
 function FilterTeksta() {
-    console.log("FilterTeksta called");
+    UkloniAnimacije();
+    let filter = document.querySelector('input[name="filter"]:checked').value;
+    let tekst=document.getElementById("tekst").value.toLowerCase().trim();
+    let dogadjaji = document.querySelectorAll("#događaji > div");
+    let br=0;
+    dogadjaji.forEach(card =>{
+        let kategorija="";
+        if(card.classList.contains("Konc"))
+            kategorija="koncert";
+        else if(card.classList.contains("Pred"))
+            kategorija="predavanje";
+        else if(card.classList.contains("Rad"))
+            kategorija="radionica";
+        let naziv=card.querySelector("h5").textContent.toLowerCase();
+        let odgovaraKat = (filter == "svi" || filter == kategorija);
+        let odgovaraText = naziv.includes(tekst);
+        card.style.display = (odgovaraKat && odgovaraText)? "" : "none";
+        if(odgovaraKat && odgovaraText)
+            br++;
+    });
+    let poruka=document.getElementById("nema");
+    if(br == 0)
+        poruka.textContent = "Nema događaja koji odgovaraju pretrazi.";
+    else
+        poruka.textContent= " Broj prikazanih događaja: "+br;
+    poruka.style.display="block";
 }
