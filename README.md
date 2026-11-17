@@ -2,7 +2,7 @@
 Projekat, ukratko, nudi mogućnost praćenja događaja, koncerata, predavanja i radionica koja se dešavaju u Beogradu.
 
 # Instrukcije za pokretanje
-Nakon preuzimanja i raspakivanja projekta, dovoljno je otvoriti Index.html fajl u pregledaču.
+Nakon preuzimanja i raspakivanja projekta, dovoljno je otvoriti index.html fajl u pregledaču.
 
 # Korišćene tehnologije
 Korišćene tehnologije (u dosadašnjem radu) su HTML, CSS, JavaScript i Bootstrap.
