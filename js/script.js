@@ -6,7 +6,7 @@ nizObjekata[0] = {ID:1, Naziv:"Koncert Vlado Georgijev", Datum:"6.12.2026", Mest
 };
 nizObjekata[1] = {ID:2, Naziv:"Sofiologija u ruskoj religijskoj misli", Datum:"18.11.2026", Mesto:"Dom Omladine, Makedonska 22, Beograd",
     Kategorija: "Predavanje", Opis: "Predavanje vodi prof. dr Davor Džalto sa Univerzitetskog koledža u Stokholmu, u okviru ciklusa „Na krilima (pre)mudrosti – Sofije“.",
-    Putanja:"img/Sofiologija(edited).jpeg"
+    Putanja:"img/Sofiologija.jpeg"
 };
 nizObjekata[2] = {ID:3, Naziv:"IT Connect X SemRush Meetup", Datum:"19.11.2026", Mesto:"Haos Community Space, Kraljice Natalije 11, Beograd",
     Kategorija: "Radionica", Opis: "Program pokriva praktične teme iz oblasti AI agenata, kreiranja sadržaja, razvoja karijere i izgradnje zajednice u IT industriji.Predavanje je na engleskom jeziku.",
@@ -24,10 +24,10 @@ nizObjekata[5] = {ID:6, Naziv:"Radionica Slikanja:Toskana", Datum:"14.11.2026", 
     Kategorija: "Radionica", Opis: "Radionica slikanja namenjena odraslima i početnicima bez prethodnog slikarskog iskustva. Uključeno neograničeno piće, stručno vođenje radionice i sav neophodan materijal.",
     Putanja:"img/Toskana(edited).png"
 };
-let br=1;
-let pocetak = "<div class='col-sm-12 col-lg-4 Konc' id="+br+"><div class='container AnimCard2' style='text-align: center;'> <div class='card' style='width: 18em; margin: auto;'>";
 function PrikaziDogađaje(){
     let html="";
+    document.getElementById("nema").textContent="Broj prikazanih događaja: "+nizObjekata.length;
+    document.getElementById("nema").style.display="block";
     for(let i=0; i< nizObjekata.length; i++)
     {
         let dogadjaj=nizObjekata[i];
@@ -38,16 +38,10 @@ function PrikaziDogađaje(){
             kategorijaKlasa="Pred";
         else if(dogadjaj.Kategorija=="Radionica")
             kategorijaKlasa="Rad";
-        if(i >=1 && i <=3)
-        {
-            html+="<div class='col-sm-12 col-lg-4 "+kategorijaKlasa+"' id="+(i+1)+"><div class='container AnimCard2' style='text-align: center;'> <div class='card' style='width: 18em; margin: auto;'><img src='"+nizObjekata[i].Putanja+"' alt='"+nizObjekata[i].Naziv+"(slika)' style='height: 18em;'> <div class='card-body'><div class='card-title'>Događaj " + (i+1) + "</div> <h5 class='card-title'>" + dogadjaj.Naziv + "</h5> <p class='card-text'>Datum: " + dogadjaj.Datum + "</p> <p class='card-text'>Lokacija: " + dogadjaj.Mesto + "</p> <p class='card-text'>Kategorija: " + dogadjaj.Kategorija + "</p> <p class='card-text'>Opis: " + dogadjaj.Opis + "</p></div></div></div></div>";
-        }
-        else
-        {
-            html+="<div class='col-sm-12 col-lg-4 "+kategorijaKlasa+"' id="+(i+1)+"><div class='container AnimCard2' style='text-align: center;'> <div class='card' style='width: 18em; margin: auto;'><img src='"+nizObjekata[i].Putanja+"' alt='"+nizObjekata[i].Naziv+"(slika)'> <div class='card-body'><div class='card-title'>Događaj " + (i+1) + "</div> <h5 class='card-title'>" + dogadjaj.Naziv + "</h5> <p class='card-text'>Datum: " + dogadjaj.Datum + "</p> <p class='card-text'>Lokacija: " + dogadjaj.Mesto + "</p> <p class='card-text'>Kategorija: " + dogadjaj.Kategorija + "</p> <p class='card-text'>Opis: " + dogadjaj.Opis + "</p></div></div></div></div>";
-        }
+        html+="<div class='col-sm-12 col-lg-4 "+kategorijaKlasa+"' id="+dogadjaj.ID+"><div class='container AnimCard2' style='text-align: center;'> <div class='card' style='width: 18em; margin: auto;'><img src='"+dogadjaj.Putanja+"' alt='"+dogadjaj.naziv+"(slika)'> <div class='card-body'><div class='card-title'>Događaj " + dogadjaj.ID + "</div> <h5 class='card-title'>" + dogadjaj.Naziv + "</h5> <p class='card-text'>Datum: " + dogadjaj.Datum + "</p> <p class='card-text'>Lokacija: " + dogadjaj.Mesto + "</p> <p class='card-text'>Kategorija: " + dogadjaj.Kategorija + "</p> <p class='card-text'>Opis: " + dogadjaj.Opis + "</p></div></div></div></div>";
     }
-    document.getElementById("događaji").innerHTML ='<h5 id="nema" style="display: none; text-align: center;">Nema pronađenih događaja.</h5>' + html;
+    document.getElementById("događaji").innerHTML += html;
+    
 }
 function UkloniAnimacije()
 {
@@ -79,7 +73,6 @@ function Filter(){
             filterText.textContent = "Samo radionice";
             break;
     }
-    filterText.style.color="black";
     FilterTeksta();
 }
 function FilterTeksta() {
