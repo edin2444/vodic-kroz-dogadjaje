@@ -1,6 +1,3 @@
-body{
-    overflow-x: hidden;
-}
 #strana{
     background-color: white;
 }
@@ -37,9 +34,6 @@ body{
     flex-direction: column;
     align-items: center;
 }
-.filtertext{
-    color: gray;
-}
 .anim1{
     animation-name: anim1;
     animation-duration: 2s;
@@ -58,9 +52,6 @@ body{
     }
 }
 @media screen and (max-width: 768px) {
-    body{
-        overflow-x: hidden;
-    }
     .vidljivost{
         display: block !important;
     }
