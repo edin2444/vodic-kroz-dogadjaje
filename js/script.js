@@ -1,5 +1,7 @@
 let animacije = false;
 let nizObjekata = [];
+let omiljeni = JSON.parse(localStorage.getItem("omiljeni")) || [];
+let prikazFav=false;
 nizObjekata[0] = {ID:1, Naziv:"Koncert Vlado Georgijev", Datum:"6.12.2026", Mesto:"Beogradska Arena, Bulevar Arsenija Čarnojevića 58, Beograd",
     Kategorija: "Koncert", Opis: "Koncert koji zasigurno ne želite da propustite! Gospodski u Areni sa pogledom na binu od 360° pruža nezaboravno iskustvo slušanja najvećih hitova Vlade Georgijeva!",
     Putanja:"img/Vlado_Arena.jpeg"
@@ -31,6 +33,7 @@ function PrikaziDogađaje(){
     for(let i=0; i< nizObjekata.length; i++)
     {
         let dogadjaj=nizObjekata[i];
+        let tekstDugmeta=omiljeni.includes(String(dogadjaj.ID)) ? "Ukloni iz omiljenih" : "Dodaj u omiljene"
         let kategorijaKlasa="";
         if(dogadjaj.Kategorija=="Koncert")
             kategorijaKlasa="Konc";
@@ -38,7 +41,7 @@ function PrikaziDogađaje(){
             kategorijaKlasa="Pred";
         else if(dogadjaj.Kategorija=="Radionica")
             kategorijaKlasa="Rad";
-        html+="<div class='col-sm-12 col-lg-4 "+kategorijaKlasa+"' id="+dogadjaj.ID+"><div class='container AnimCard2' style='text-align: center;'> <div class='card' style='width: 18em; margin: auto;'><img src='"+dogadjaj.Putanja+"' alt='"+dogadjaj.naziv+"(slika)'> <div class='card-body'><div class='card-title'>Događaj " + dogadjaj.ID + "</div> <h5 class='card-title'>" + dogadjaj.Naziv + "</h5> <p class='card-text'>Datum: " + dogadjaj.Datum + "</p> <p class='card-text'>Lokacija: " + dogadjaj.Mesto + "</p> <p class='card-text'>Kategorija: " + dogadjaj.Kategorija + "</p> <p class='card-text'>Opis: " + dogadjaj.Opis + "</p></div></div></div></div>";
+        html+="<div class='col-sm-12 col-lg-4 "+kategorijaKlasa+"' id="+dogadjaj.ID+"><div class='container AnimCard2' style='text-align: center;'> <div class='card' style='width: 18em; margin: auto;'><img src='"+dogadjaj.Putanja+"' alt='"+dogadjaj.naziv+"(slika)'> <div class='card-body'><div class='card-title'>Događaj " + dogadjaj.ID + "</div> <h5 class='card-title'>" + dogadjaj.Naziv + "</h5> <p class='card-text'>Datum: " + dogadjaj.Datum + "</p> <p class='card-text'>Lokacija: " + dogadjaj.Mesto + "</p> <p class='card-text'>Kategorija: " + dogadjaj.Kategorija + "</p> <p class='card-text'>Opis: " + dogadjaj.Opis + "</p><button class='btn btn-primary' onclick='AddFavorites(this)'>"+tekstDugmeta+"</button></div></div></div></div>";
     }
     document.getElementById("događaji").innerHTML += html;
     
@@ -56,7 +59,6 @@ function UkloniAnimacije()
     }
 }
 function Filter(){
-    UkloniAnimacije();
     let filter = document.querySelector('input[name="filter"]:checked').value;
     let filterText = document.querySelector(".filtertext");
     switch(filter) {
@@ -92,14 +94,42 @@ function FilterTeksta() {
         let naziv=card.querySelector("h5").textContent.toLowerCase();
         let odgovaraKat = (filter == "svi" || filter == kategorija);
         let odgovaraText = naziv.includes(tekst);
-        card.style.display = (odgovaraKat && odgovaraText)? "" : "none";
-        if(odgovaraKat && odgovaraText)
+        let odgovaraFav = !prikazFav || omiljeni.includes(card.id);
+        card.style.display = (odgovaraKat && odgovaraText && odgovaraFav)? "" : "none";
+        if(odgovaraKat && odgovaraText && odgovaraFav)
             br++;
     });
     let poruka=document.getElementById("nema");
     if(br == 0)
-        poruka.textContent = "Nema događaja koji odgovaraju pretrazi.";
+        poruka.textContent = "Nema događaja koji odgovaraju filteru.";
     else
         poruka.textContent= " Broj prikazanih događaja: "+br;
     poruka.style.display="block";
+}
+function AddFavorites(dugme)
+{
+    let kartica=dugme.closest("#događaji > div");
+    let id=kartica.id;
+    if(omiljeni.includes(id))
+    {
+        omiljeni=omiljeni.filter(x => x !== id);
+        dugme.textContent = "Dodaj u omiljene";
+    }
+    else
+    {
+        omiljeni.push(id);
+        dugme.textContent="Ukloni iz omiljenih";
+    }
+    localStorage.setItem("omiljeni",JSON.stringify(omiljeni))
+    FilterTeksta();
+}
+function PrikaziFav()
+{
+    prikazFav = !prikazFav;
+    let dugme =document.getElementById("favoriti");
+    if(prikazFav)
+        dugme.textContent="Prikaži sve događaje";
+    else
+        dugme.textContent= "Prikaži samo omiljene";
+    FilterTeksta();
 }

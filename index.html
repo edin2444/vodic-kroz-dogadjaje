@@ -36,36 +36,45 @@
       <h5 class="center anim1">Na ovoj stranici ćete pronaći sve informacije o događajima koji se organizuju u raznim delovima grada. Pogledajte listu i pridružite nam se!</h5>
     </div>
   </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <h2 class="center anim1">Naši događaji</h2>
-    </div>
-    <div class="accordion anim1" id="btn1">
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingOne">
-          <button class="accordion-button btn btn-warning d-block text-center" type="button" data-bs-toggle="collapse" data-bs-target="#filter" aria-expanded="false" aria-controls="filter">
-            Filter
-          </button>
-        </h2>
-        <div id="filter" class="accordion-collapse collapse show" data-bs-parent="#btn1">
-          <div class="accordion-body checks">
-            <label style="cursor: pointer;"><input type="radio" id="svi" name="filter" value="svi" style="cursor: pointer;" onchange="Filter()" checked>&nbsp;Svi događaji</label><br>
-            <label style="cursor: pointer;"><input type="radio" id="koncert" name="filter" value="koncert" style="cursor: pointer;" onchange="Filter()">&nbsp;Koncerti</label><br>
-            <label style="cursor: pointer;"><input type="radio" id="predavanje" name="filter" value="predavanje" style="cursor: pointer;" onchange="Filter()">&nbsp;Predavanja</label><br>
-            <label style="cursor: pointer;"><input type="radio" id="radionica" name="filter" value="radionica" style="cursor: pointer;" onchange="Filter()">&nbsp;Radionice</label><br>
-            <label for="tekst">Pretraga po nazivu</label><input type="text" id="tekst" placeholder="Unesite naziv događaja ili deo naziva..." oninput="FilterTeksta()">
+    <div class="row g-2">
+      <div class="col-sm-12">
+        <h2 class="center anim1">Naši događaji</h2>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <div class="accordion anim1" id="btn1">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button btn btn-warning d-block text-center" type="button" data-bs-toggle="collapse" data-bs-target="#filter" aria-expanded="false" aria-controls="filter">
+                Filter
+              </button>
+            </h2>
+            <div id="filter" class="accordion-collapse collapse" data-bs-parent="#btn1">
+              <div class="accordion-body checks">
+                <label style="cursor: pointer;"><input type="radio" id="svi" name="filter" value="svi" style="cursor: pointer;" onchange="Filter()" checked>&nbsp;Svi događaji</label><br>
+                <label style="cursor: pointer;"><input type="radio" id="koncert" name="filter" value="koncert" style="cursor: pointer;" onchange="Filter()">&nbsp;Koncerti</label><br>
+                <label style="cursor: pointer;"><input type="radio" id="predavanje" name="filter" value="predavanje" style="cursor: pointer;" onchange="Filter()">&nbsp;Predavanja</label><br>
+                <label style="cursor: pointer;"><input type="radio" id="radionica" name="filter" value="radionica" style="cursor: pointer;" onchange="Filter()">&nbsp;Radionice</label><br>
+                <label for="tekst">Pretraga po nazivu</label><input type="text" id="tekst" placeholder="Unesite naziv događaja ili deo naziva..." oninput="FilterTeksta()">
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      <div class="col-sm-12 col-md-6">
+        <button class="btn btn-info d-block w-100 text-center anim1" id="favoriti" type="button" onclick="PrikaziFav()">
+          Prikaži samo omiljene
+        </button>
+      </div>
     </div>
-    <div class="col-sm-12">
-      <h5 class="center anim1 filtertext">Svi događaji</h5>
+    <div class="row g-4">
+      <div class="col-sm-12">
+        <h5 class="center anim1 filtertext">Svi događaji</h5>
+      </div>
+      <div class="row g-4" id="događaji">
+        <h5 id="nema" class="AnimCard2" style="text-align: center;">Broj događaja ide ovde...</h5>
+        <!-- Ovde idu kartice -->
+      </div>
     </div>
-    <div class="row g-4" id="događaji">
-      <h5 id="nema" class="AnimCard2" style="text-align: center;">Broj događaja ide ovde...</h5>
-      <!-- Ovde idu kartice -->
-    </div>
-  </div>
 </main>
 </body>
 <script defer src="js/script.js"></script>
